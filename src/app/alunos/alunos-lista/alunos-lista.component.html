@@ -1,0 +1,85 @@
+<h1 class="mt-4">Alunos</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+      </div>
+      <div class="alert alert-danger" role="alert" *ngFor="mensagemErro">
+        {{ mensagemErro }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-warning" (click)="novoCadastro()">
+        <i class="fa fa-plus"></i> Novo
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Data Cadastro</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let aluno of alunos">
+            <td>{{ aluno.id }}</td>
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.cpf }}</td>
+            <td>{{ aluno.dataCadastro }}</td>
+            <td>
+              <button
+                class="btn btn-primary"
+                routerLink="/alunos/form/{{ aluno.id }}"
+              >
+                <i class="fa fa-edit"></i>
+              </button>
+
+              <button
+                class="btn btn-danger"
+                (click)="preparaDelete(aluno)"
+                data-toggle="modal"
+                data-target="#modalDelete"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modalDelete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h4>Confirmação</h4></div>
+        <div class="modal-body" *ngIf="alunoSelecionado">
+          Confirma a deleção do(a) aluno(a) {{ alunoSelecionado.nome }}?
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-success"
+            (click)="deletaraluno()"
+            data-dismiss="modal"
+          >
+            Confirmar
+          </button>
+          <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

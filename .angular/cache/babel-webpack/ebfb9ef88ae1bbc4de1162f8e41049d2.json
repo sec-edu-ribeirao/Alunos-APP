@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: false,\n  apiURLBase: 'https://alunos-app-test.herokuapp.com',\n  clientID: 'my-angular-app',\n  clientSecret: 'my-pass-app',\n  getUrlToken: '/oauth/token'\n};","map":null,"metadata":{},"sourceType":"module"}
